@@ -124,7 +124,7 @@ export function Character({ state, mood, offsetX, goldenActive, onHit, onMiss }:
           <path d="M112 176 q-8 -50 34 -78" stroke="#2a2d47" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.7" />
 
           {/* bear print */}
-          {[
+          {([
             [140, 118, -12, 0.95],
             [178, 96, 8, 0.9],
             [214, 122, -6, 0.85],
