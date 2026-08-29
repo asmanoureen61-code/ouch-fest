@@ -90,38 +90,37 @@ export function Character({ state, mood, offsetX, goldenActive, onHit, onMiss }:
           {/* floor contact shadow */}
           <ellipse cx="150" cy="322" rx="112" ry="15" fill="#000" opacity="0.2" />
 
-          {/* ---- BACK LEG (bare, left / camera-left) ---- */}
-          <path d="M112 214 L92 258 L84 292" stroke={SKIN_SHADE} strokeWidth="30" strokeLinecap="round" fill="none" />
-          <path d="M112 212 L94 256 L86 290" stroke={SKIN} strokeWidth="26" strokeLinecap="round" fill="none" />
-          <Sneaker x={72} y={302} flip />
+          {/* ---- BACK LEG (bare, camera-left) ---- */}
+          <path d="M104 226 L86 268 L78 302" stroke={SKIN_SHADE} strokeWidth="30" strokeLinecap="round" fill="none" />
+          <path d="M104 224 L88 266 L80 300" stroke={SKIN} strokeWidth="26" strokeLinecap="round" fill="none" />
+          <Sneaker x={68} y={312} flip />
 
-          {/* ---- FRONT LEG (black knee-length legging) ---- */}
-          <path d="M168 220 L176 262 L162 292" stroke={SKIN} strokeWidth="34" strokeLinecap="round" fill="none" />
-          <path d="M174 250 L176 268 L164 290" stroke={LEGGING} strokeWidth="30" strokeLinecap="round" fill="none" />
-          <path d="M160 236 q18 6 26 16" stroke={LEGGING} strokeWidth="26" strokeLinecap="round" fill="none" opacity="0.96" />
-          <Sneaker x={168} y={302} />
+          {/* ---- FRONT LEG (bare thigh + black knee-length legging) ---- */}
+          <path d="M158 228 L172 264 L164 296" stroke={SKIN} strokeWidth="36" strokeLinecap="round" fill="none" />
+          <path d="M172 258 L174 276 L166 298" stroke={LEGGING} strokeWidth="32" strokeLinecap="round" fill="none" />
+          <Sneaker x={172} y={312} />
 
           {/* ---- SHORTS / BACKSIDE ---- */}
-          <g>
+          <g transform="translate(-4 12)">
             <path
-              d="M176 158 q30 44 6 82 q-38 30 -84 12 q-40 -16 -38 -54 q2 -38 46 -50 q48 -12 70 10 z"
+              d="M172 156 q32 44 8 84 q-38 30 -86 12 q-42 -16 -40 -56 q2 -38 46 -50 q50 -12 72 10 z"
               fill={DENIM}
               stroke={DENIM_DARK}
               strokeWidth="5"
             />
-            <path d="M66 156 q-30 18 -26 50 q4 30 32 36 q-22 -42 -6 -86 z" fill="#3a63c2" stroke={DENIM_DARK} strokeWidth="4" />
-            <path d="M52 196 q22 -8 36 4" stroke={DENIM_DARK} strokeWidth="5" fill="none" strokeLinecap="round" />
-            <path d="M96 236 q26 10 56 0" stroke={DENIM_DARK} strokeWidth="4" fill="none" strokeLinecap="round" opacity="0.8" />
+            <path d="M62 154 q-32 18 -28 52 q4 32 34 38 q-24 -44 -6 -90 z" fill="#3a63c2" stroke={DENIM_DARK} strokeWidth="4" />
+            <path d="M48 196 q22 -8 36 4" stroke={DENIM_DARK} strokeWidth="5" fill="none" strokeLinecap="round" />
+            <path d="M96 238 q26 10 58 -2" stroke={DENIM_DARK} strokeWidth="4" fill="none" strokeLinecap="round" opacity="0.8" />
           </g>
 
           {/* ---- HOODIE TORSO (leaning forward, back to camera-left) ---- */}
           <path
-            d="M104 188 q-14 -66 40 -96 q52 -30 92 -6 q38 22 32 68 q-6 44 -40 62 q-50 26 -92 6 q-28 -14 -32 -34 z"
+            d="M106 162 q-16 -62 38 -92 q52 -30 92 -6 q38 22 32 68 q-6 42 -40 58 q-48 22 -90 4 q-28 -12 -32 -32 z"
             fill={HOODIE}
             stroke={HOODIE_DARK}
             strokeWidth="5"
           />
-          <path d="M112 176 q-8 -50 34 -78" stroke="#2a2d47" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.7" />
+          <path d="M114 152 q-8 -48 34 -76" stroke="#2a2d47" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.7" />
 
           {/* bear print */}
           {([
