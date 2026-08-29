@@ -47,6 +47,8 @@ function beep(ctx: AudioContext, key: SoundKey) {
 export function useAudio(enabled: boolean) {
   const ctxRef = useRef<AudioContext | null>(null);
   const cacheRef = useRef<Map<string, HTMLAudioElement | null>>(new Map());
+  const enabledRef = useRef(enabled);
+  enabledRef.current = enabled;
 
   // Preload the custom ouch sound so the first successful hit plays instantly.
   useEffect(() => {
@@ -63,49 +65,63 @@ export function useAudio(enabled: boolean) {
     }
   }, []);
 
+  const playOnce = useCallback((key: SoundKey) => {
+    if (typeof window === "undefined") return;
+    const list = FILES[key];
+    const src = list[Math.floor(Math.random() * list.length)]!;
+    try {
+      let el = cacheRef.current.get(src);
+      if (el === undefined) {
+        el = new Audio(src);
+        el.preload = "auto";
+        el.addEventListener("error", () => cacheRef.current.set(src, null), { once: true });
+        cacheRef.current.set(src, el);
+      }
+      if (el) {
+        const node = el.cloneNode(true) as HTMLAudioElement;
+        node.volume = 0.5;
+        const p = node.play();
+        if (p) {
+          p.catch(() => {
+            cacheRef.current.set(src, null);
+            synth(key);
+          });
+        }
+        return;
+      }
+    } catch {
+      /* ignore */
+    }
+    synth(key);
+
+    function synth(k: SoundKey) {
+      try {
+        const AC =
+          window.AudioContext ??
+          (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+        if (!AC) return;
+        if (!ctxRef.current) ctxRef.current = new AC();
+        if (ctxRef.current.state === "suspended") void ctxRef.current.resume();
+        beep(ctxRef.current, k);
+      } catch {
+        /* silent */
+      }
+    }
+  }, []);
+
   const play = useCallback(
     (key: SoundKey) => {
       if (!enabled || typeof window === "undefined") return;
-      const list = FILES[key];
-      const src = list[Math.floor(Math.random() * list.length)]!;
-      try {
-        let el = cacheRef.current.get(src);
-        if (el === undefined) {
-          el = new Audio(src);
-          el.preload = "auto";
-          el.addEventListener("error", () => cacheRef.current.set(src, null), { once: true });
-          cacheRef.current.set(src, el);
-        }
-        if (el) {
-          const node = el.cloneNode(true) as HTMLAudioElement;
-          node.volume = 0.5;
-          const p = node.play();
-          if (p) {
-            p.catch(() => {
-              cacheRef.current.set(src, null);
-              synth(key);
-            });
-          }
-          return;
-        }
-      } catch {
-        /* ignore */
-      }
-      synth(key);
-
-      function synth(k: SoundKey) {
-        try {
-          const AC = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-          if (!AC) return;
-          if (!ctxRef.current) ctxRef.current = new AC();
-          if (ctxRef.current.state === "suspended") void ctxRef.current.resume();
-          beep(ctxRef.current, k);
-        } catch {
-          /* silent */
-        }
+      // One successful backside tap says OUCH twice: instantly, then shortly
+      // after. Non-blocking, so rapid taps never lock the character.
+      playOnce(key);
+      if (key === "ouch") {
+        window.setTimeout(() => {
+          if (enabledRef.current) playOnce("ouch");
+        }, 650);
       }
     },
-    [enabled],
+    [enabled, playOnce],
   );
 
   return { play };
