@@ -1,24 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { GameCanvas } from "@/components/Game/GameCanvas";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Ouch Ouch Game — Tap, Score, Combo" },
+      {
+        name: "description",
+        content:
+          "Ouch Ouch is a fast cartoon tap game: hit the target, build combos, enrage the character and clear all 5 levels to become Ouch Master.",
+      },
+      { property: "og:title", content: "Ouch Ouch Game — Tap, Score, Combo" },
+      {
+        property: "og:description",
+        content: "A pointless, addictive cartoon tap game. Build combos, land critical ouches, beat 5 levels.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main>
+      <h1 className="sr-only">Ouch Ouch Game</h1>
+      <GameCanvas />
+    </main>
   );
 }
