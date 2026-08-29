@@ -113,6 +113,7 @@ export function Character({ state, mood, offsetX, goldenActive, onHit, onMiss }:
             <path d="M96 238 q26 10 58 -2" stroke={DENIM_DARK} strokeWidth="4" fill="none" strokeLinecap="round" opacity="0.8" />
           </g>
 
+          <g transform="translate(0 -26)">
           {/* ---- HOODIE TORSO (leaning forward, back to camera-left) ---- */}
           <path
             d="M106 162 q-16 -62 38 -92 q52 -30 92 -6 q38 22 32 68 q-6 42 -40 58 q-48 22 -90 4 q-28 -12 -32 -32 z"
