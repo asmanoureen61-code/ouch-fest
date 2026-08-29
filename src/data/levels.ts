@@ -16,4 +16,4 @@ export const LEVELS: LevelConfig[] = [
   { id: 5, name: "Ouch Boss", requiredHits: 100, dodgeChance: 0.25, movementSpeed: 1.6, chaosEvents: true, boss: true },
 ];
 
-export const getLevel = (id: number) => LEVELS.find((l) => l.id === id) ?? LEVELS[0];
+export const getLevel = (id: number) => LEVELS.find((l) => l.id === id) ?? LEVELS[0]!;
