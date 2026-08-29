@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 export type SoundKey =
   | "ouch"
@@ -10,7 +10,7 @@ export type SoundKey =
   | "click";
 
 const FILES: Record<SoundKey, string[]> = {
-  ouch: ["/audio/ouch-01.mp3", "/audio/ouch-02.mp3", "/audio/ouch-03.mp3", "/audio/hey-01.mp3", "/audio/stop-01.mp3"],
+  ouch: ["/audio/ouch.mp3"],
   impact: ["/audio/impact.mp3"],
   combo: ["/audio/combo.mp3"],
   critical: ["/audio/critical.mp3"],
@@ -47,6 +47,21 @@ function beep(ctx: AudioContext, key: SoundKey) {
 export function useAudio(enabled: boolean) {
   const ctxRef = useRef<AudioContext | null>(null);
   const cacheRef = useRef<Map<string, HTMLAudioElement | null>>(new Map());
+
+  // Preload the custom ouch sound so the first successful hit plays instantly.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const src = FILES.ouch[0]!;
+      const el = new Audio(src);
+      el.preload = "auto";
+      el.addEventListener("error", () => cacheRef.current.set(src, null), { once: true });
+      cacheRef.current.set(src, el);
+      el.load();
+    } catch {
+      /* never crash on audio */
+    }
+  }, []);
 
   const play = useCallback(
     (key: SoundKey) => {
