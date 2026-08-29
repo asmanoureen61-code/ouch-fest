@@ -201,7 +201,7 @@ export function Character({ state, mood, offsetX, goldenActive, onHit, onMiss }:
           className={`pointer-events-auto absolute rounded-[50%] outline-none ${
             goldenActive ? "animate-golden ring-4 ring-[oklch(0.85_0.17_90)]" : ""
           }`}
-          style={{ left: "12%", top: "44%", width: "38%", height: "32%", background: "transparent", touchAction: "manipulation" }}
+          style={{ left: "6%", top: "38%", width: "38%", height: "31%", background: "transparent", touchAction: "manipulation" }}
         />
         {/* non-scoring body area (torso + head) */}
         <button
