@@ -187,6 +187,7 @@ export function Character({ state, mood, offsetX, goldenActive, onHit, onMiss }:
             <ellipse cx="250" cy={open ? 124 : 126} rx={open ? 12 : 9} ry="5" fill="#fff4f1" />
             <ellipse cx="250" cy={open ? 142 : 139} rx={open ? 8 : 6} ry="3.4" fill="#d1596a" />
           </g>
+          </g>
         </svg>
 
         {/* backside hitbox — centred on the hip/backside of the new character */}
