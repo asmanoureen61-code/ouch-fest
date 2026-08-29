@@ -66,7 +66,20 @@ export function useAudio(enabled: boolean) {
   const play = useCallback(
     (key: SoundKey) => {
       if (!enabled || typeof window === "undefined") return;
-      const list = FILES[key];
+      // A single successful backside tap says OUCH twice: once instantly,
+      // once shortly after. Both are non-blocking so rapid taps never lock.
+      playOnce(key);
+      if (key === "ouch") {
+        window.setTimeout(() => {
+          if (enabledRef.current) playOnce("ouch");
+        }, 650);
+      }
+    },
+    [enabled],
+  );
+
+  return { play };
+}
       const src = list[Math.floor(Math.random() * list.length)]!;
       try {
         let el = cacheRef.current.get(src);
