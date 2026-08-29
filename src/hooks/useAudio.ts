@@ -47,8 +47,6 @@ function beep(ctx: AudioContext, key: SoundKey) {
 export function useAudio(enabled: boolean) {
   const ctxRef = useRef<AudioContext | null>(null);
   const cacheRef = useRef<Map<string, HTMLAudioElement | null>>(new Map());
-  const enabledRef = useRef(enabled);
-  enabledRef.current = enabled;
 
   // Preload the custom ouch sound so the first successful hit plays instantly.
   useEffect(() => {
@@ -112,14 +110,7 @@ export function useAudio(enabled: boolean) {
   const play = useCallback(
     (key: SoundKey) => {
       if (!enabled || typeof window === "undefined") return;
-      // One successful backside tap says OUCH twice: instantly, then shortly
-      // after. Non-blocking, so rapid taps never lock the character.
       playOnce(key);
-      if (key === "ouch") {
-        window.setTimeout(() => {
-          if (enabledRef.current) playOnce("ouch");
-        }, 650);
-      }
     },
     [enabled, playOnce],
   );
