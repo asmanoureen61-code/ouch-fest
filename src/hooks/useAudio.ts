@@ -52,7 +52,7 @@ export function useAudio(enabled: boolean) {
     (key: SoundKey) => {
       if (!enabled || typeof window === "undefined") return;
       const list = FILES[key];
-      const src = list[Math.floor(Math.random() * list.length)];
+      const src = list[Math.floor(Math.random() * list.length)]!;
       try {
         let el = cacheRef.current.get(src);
         if (el === undefined) {

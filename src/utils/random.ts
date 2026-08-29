@@ -9,7 +9,7 @@ export function weightedPick<T>(entries: Array<[T, number]>): T {
     r -= w;
     if (r <= 0) return value;
   }
-  return entries[entries.length - 1][0];
+  return entries[entries.length - 1]![0];
 }
 
-export const pick = <T,>(arr: readonly T[]): T => arr[Math.floor(Math.random() * arr.length)];
+export const pick = <T,>(arr: readonly T[]): T => arr[Math.floor(Math.random() * arr.length)]!;
