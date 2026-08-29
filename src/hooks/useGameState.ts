@@ -412,7 +412,7 @@ export function useGameState() {
         setOffsetX(rand(-1, 1) * 60);
         unlock("Run Away");
       } else {
-        setCharTemp("spin" in {} ? "idle" : "crouch", 500);
+        setCharTemp("crouch", 500);
       }
     }, 6000);
     return () => window.clearInterval(t);
