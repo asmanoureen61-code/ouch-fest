@@ -134,7 +134,7 @@ export function Character({ state, mood, offsetX, goldenActive, onHit, onMiss }:
             [232, 96, 12, 0.75],
             [186, 200, -4, 0.8],
             [244, 148, -14, 0.7],
-          ].map(([x, y, r, s], i) => (
+          ] as [number, number, number, number][]).map(([x, y, r, s], i) => (
             <Bear key={i} x={x} y={y} r={r} s={s} />
           ))}
 
