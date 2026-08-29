@@ -127,12 +127,12 @@ export function Character({ state, mood, offsetX, goldenActive, onHit, onMiss }:
             [140, 118, -12, 0.95],
             [178, 96, 8, 0.9],
             [214, 122, -6, 0.85],
-            [158, 156, 14, 1],
-            [200, 168, -10, 0.9],
-            [130, 168, 6, 0.85],
+            [158, 150, 14, 1],
+            [200, 160, -10, 0.9],
+            [130, 156, 6, 0.85],
             [232, 96, 12, 0.75],
-            [186, 200, -4, 0.8],
-            [244, 148, -14, 0.7],
+            [176, 186, -4, 0.8],
+            [244, 144, -14, 0.7],
           ] as [number, number, number, number][]).map(([x, y, r, s], i) => (
             <Bear key={i} x={x} y={y} r={r} s={s} />
           ))}
@@ -141,9 +141,9 @@ export function Character({ state, mood, offsetX, goldenActive, onHit, onMiss }:
           <path d="M216 66 q46 8 50 50 q2 28 -20 38 q12 -48 -34 -72 z" fill={HOODIE_DARK} stroke="#0d0f1f" strokeWidth="4" />
 
           {/* arm to knee */}
-          <path d="M172 176 q-2 44 -4 62" stroke={HOODIE} strokeWidth="28" strokeLinecap="round" fill="none" />
-          <path d="M172 176 q-2 44 -4 62" stroke="#2a2d47" strokeWidth="10" strokeLinecap="round" fill="none" opacity="0.35" />
-          <circle cx="168" cy="244" r="14" fill={SKIN} stroke={SKIN_SHADE} strokeWidth="3" />
+          <path d="M176 166 q0 46 -4 70" stroke={HOODIE} strokeWidth="28" strokeLinecap="round" fill="none" />
+          <path d="M176 166 q0 46 -4 70" stroke="#2a2d47" strokeWidth="10" strokeLinecap="round" fill="none" opacity="0.35" />
+          <circle cx="170" cy="252" r="14" fill={SKIN} stroke={SKIN_SHADE} strokeWidth="3" />
 
           {/* ---- HEAD (turned toward player) ---- */}
           <g style={{ transformOrigin: "236px 92px", transform: looking ? "rotate(-9deg)" : "none", transition: "transform 180ms" }}>
