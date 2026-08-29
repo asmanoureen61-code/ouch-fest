@@ -91,17 +91,17 @@ export function Character({ state, mood, offsetX, goldenActive, onHit, onMiss }:
           <ellipse cx="150" cy="322" rx="112" ry="15" fill="#000" opacity="0.2" />
 
           {/* ---- BACK LEG (bare, camera-left) ---- */}
-          <path d="M104 226 L86 268 L78 302" stroke={SKIN_SHADE} strokeWidth="30" strokeLinecap="round" fill="none" />
-          <path d="M104 224 L88 266 L80 300" stroke={SKIN} strokeWidth="26" strokeLinecap="round" fill="none" />
-          <Sneaker x={68} y={312} flip />
+          <path d="M100 194 L80 250 L74 300" stroke={SKIN_SHADE} strokeWidth="30" strokeLinecap="round" fill="none" />
+          <path d="M100 192 L82 248 L76 298" stroke={SKIN} strokeWidth="26" strokeLinecap="round" fill="none" />
+          <Sneaker x={64} y={312} flip />
 
           {/* ---- FRONT LEG (bare thigh + black knee-length legging) ---- */}
-          <path d="M158 228 L172 264 L164 296" stroke={SKIN} strokeWidth="36" strokeLinecap="round" fill="none" />
-          <path d="M172 258 L174 276 L166 298" stroke={LEGGING} strokeWidth="32" strokeLinecap="round" fill="none" />
-          <Sneaker x={172} y={312} />
+          <path d="M152 198 L172 248 L166 296" stroke={SKIN} strokeWidth="36" strokeLinecap="round" fill="none" />
+          <path d="M172 244 L176 272 L168 298" stroke={LEGGING} strokeWidth="32" strokeLinecap="round" fill="none" />
+          <Sneaker x={174} y={312} />
 
           {/* ---- SHORTS / BACKSIDE ---- */}
-          <g transform="translate(-4 12)">
+          <g transform="translate(-4 -18)">
             <path
               d="M172 156 q32 44 8 84 q-38 30 -86 12 q-42 -16 -40 -56 q2 -38 46 -50 q50 -12 72 10 z"
               fill={DENIM}
