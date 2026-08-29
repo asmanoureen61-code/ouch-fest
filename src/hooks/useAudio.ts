@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 export type SoundKey =
   | "ouch"
@@ -10,7 +10,7 @@ export type SoundKey =
   | "click";
 
 const FILES: Record<SoundKey, string[]> = {
-  ouch: ["/audio/ouch-01.mp3", "/audio/ouch-02.mp3", "/audio/ouch-03.mp3", "/audio/hey-01.mp3", "/audio/stop-01.mp3"],
+  ouch: ["/audio/ouch.mp3"],
   impact: ["/audio/impact.mp3"],
   combo: ["/audio/combo.mp3"],
   critical: ["/audio/critical.mp3"],
