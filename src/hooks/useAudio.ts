@@ -48,6 +48,21 @@ export function useAudio(enabled: boolean) {
   const ctxRef = useRef<AudioContext | null>(null);
   const cacheRef = useRef<Map<string, HTMLAudioElement | null>>(new Map());
 
+  // Preload the custom ouch sound so the first successful hit plays instantly.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const src = FILES.ouch[0]!;
+      const el = new Audio(src);
+      el.preload = "auto";
+      el.addEventListener("error", () => cacheRef.current.set(src, null), { once: true });
+      cacheRef.current.set(src, el);
+      el.load();
+    } catch {
+      /* never crash on audio */
+    }
+  }, []);
+
   const play = useCallback(
     (key: SoundKey) => {
       if (!enabled || typeof window === "undefined") return;
