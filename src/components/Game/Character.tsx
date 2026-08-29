@@ -64,6 +64,7 @@ export function Character({ state, mood, offsetX, goldenActive, onHit, onMiss }:
           </g>
 
           {/* shorts / backside */}
+          <g transform="translate(-16 6) scale(1.06 1.04)">
           <path
             d="M196 150 q26 46 -2 80 q-40 26 -92 8 q-42 -16 -42 -52 q0 -40 46 -50 q54 -12 90 14 z"
             fill="#2f4f9e"
@@ -72,6 +73,7 @@ export function Character({ state, mood, offsetX, goldenActive, onHit, onMiss }:
           />
           <path d="M76 148 q-32 16 -28 48 q4 30 34 36 q-22 -40 -6 -84 z" fill="#3a5fb8" stroke="#1e3468" strokeWidth="4" />
           <path d="M62 186 q22 -6 34 6" stroke="#22417f" strokeWidth="5" fill="none" strokeLinecap="round" />
+          </g>
 
           {/* hoodie */}
           <path
@@ -156,7 +158,7 @@ export function Character({ state, mood, offsetX, goldenActive, onHit, onMiss }:
           className={`pointer-events-auto absolute rounded-[50%] outline-none ${
             goldenActive ? "animate-golden ring-4 ring-[oklch(0.85_0.17_90)]" : ""
           }`}
-          style={{ left: "8%", top: "40%", width: "44%", height: "34%", background: "transparent", touchAction: "manipulation" }}
+          style={{ left: "4%", top: "38%", width: "46%", height: "36%", background: "transparent", touchAction: "manipulation" }}
         />
         {/* non-scoring body area */}
         <button
